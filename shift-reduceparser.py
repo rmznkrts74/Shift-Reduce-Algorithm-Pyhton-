@@ -87,7 +87,6 @@ def justAction(action, mystack, input):
             del mystack[index+1:]
             print(mystack)
             mystack[index] = "E"
-        del input[0]
         # print("R1")
         return mystack
     if (action == 'R2'):
