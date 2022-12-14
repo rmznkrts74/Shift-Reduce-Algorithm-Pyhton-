@@ -60,13 +60,14 @@ def stack(action, mystack, newlist, coordinat, value):
             index1 = coordinat.index(mystack[-2]+mystack[-1])
             action = value[index1]
             mystack += action[-1]
+            justAction(action, mystack, newlist)
             continue
         else:
             # print(mystack)
-            mystack += newlist[0]
             # print("myList:",newlist)
             print("My", mystack)
             #del newlist[0]
+            mystack += newlist[0]
             index1 = coordinat.index(mystack[-2]+mystack[-1])
             action = value[index1]
             print(action, "----------------------------------------")
@@ -121,13 +122,13 @@ def justAction(action, mystack, input):
         return mystack
     if (action == 'R5'):
         # print("R5")
-        print(mystack)
+        # print(mystack)
         if ("(" and "E" and ")" in mystack):
             index = indexer(mystack, "(")
-            index3 = indexer(mystack, ")")
-            del mystack[index+1:index3+1]
+            index3 = mystack.index(")")
+            del mystack[index:index3+1]
             mystack[index] = "F"
-        #del input[0]
+        del mystack[-1]
         print(mystack)
         return mystack
     if (action == 'R6'):
