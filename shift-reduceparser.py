@@ -12,9 +12,7 @@ def main():
     input1 = list(input1)
     newList = finder(input1)
     newList.append("$")
-    newList.append("$")
 
-    # print(newList)
     action = " "
     a = stack(action, mystack, newList, coordinat, value)
 
@@ -56,7 +54,6 @@ def stack(action, mystack, newlist, coordinat, value):
             print("INVALID string entered. SYNTAX ERROR!")
             break
         if (action.startswith('R')):
-            print("if", mystack)
             mystack=list(mystack)
             index1 = coordinat.index(mystack[-2]+mystack[-1])
             action = value[index1]
@@ -64,10 +61,6 @@ def stack(action, mystack, newlist, coordinat, value):
             justAction(action, mystack, newlist)
             continue
         else:
-            # print(mystack)
-            # print("myList:",newlist)
-            print("My", mystack)
-            #del newlist[0]
             mystack += newlist[0]
             index1 = coordinat.index(mystack[-2]+mystack[-1])
             action = value[index1]
@@ -80,26 +73,24 @@ def justAction(action, mystack, input):
     if (action.startswith('S')):
         mystack += action[1]
         del input[0]
+        print(mystack)
         return mystack
     if (action == 'R1'):
         # E->E+T
         if ("E" and "T" in mystack):
-            print("aaa", mystack)
             index = indexer(mystack, "E")
             del mystack[index+1:]
             print(mystack)
             mystack[index] = "E"
-        # print("R1")
+        print(mystack)
         return mystack
     if (action == 'R2'):
         # E->T
-        # print("R2")
         if ("T" in mystack):
             index = indexer(mystack, "T")
-            print(index)
             del mystack[index+1:]
             mystack[index] = "E"
-            #del input[0]
+        print(mystack)
         return mystack
     if (action == 'R3'):
         # T->T*F
@@ -108,22 +99,17 @@ def justAction(action, mystack, input):
             index3 = indexer(mystack, "F")
             del mystack[index+1:]
             mystack[index] = "T"
-        #del input[0]
-        print("R3")
+        print(mystack)
         return mystack
     if (action == 'R4'):
         # T->F
-        # print("R4")
-        print("aaa", mystack)
         while ("F" in mystack):
             index = indexer(mystack, "F")
             del mystack[index+1:]
             mystack[index] = "T"
-        #del input[0]
+        print(mystack)
         return mystack
     if (action == 'R5'):
-        # print("R5")
-        # print(mystack)
         if ("(" and "E" and ")" in mystack):
             index = indexer(mystack, "(")
             index3 = mystack.index(")")
@@ -133,19 +119,13 @@ def justAction(action, mystack, input):
         print(mystack)
         return mystack
     if (action == 'R6'):
-        print(mystack)
         # F->id
         if ("x" in mystack):
             index = indexer(mystack, "x")
             del mystack[index+1:]
             mystack[index] = "F"
-        # print("R6")
-        #del input[0]
         print(mystack)
         return mystack
-        # stack(mystack,newlist,value,coordinat)
     if (action == "Accept"):
         print("VALID string entered. ACCEPTED!")
-
-
 main()
