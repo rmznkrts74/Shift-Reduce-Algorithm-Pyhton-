@@ -57,6 +57,7 @@ def stack(action, mystack, newlist, coordinat, value):
             break
         if (action.startswith('R')):
             print("if", mystack)
+            mystack=list(mystack)
             index1 = coordinat.index(mystack[-2]+mystack[-1])
             action = value[index1]
             mystack += action[-1]
